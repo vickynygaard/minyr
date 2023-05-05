@@ -15,6 +15,7 @@ func main() {
 	var input string
 	lines := Opnelese()
 	fmt.Print("Choose convert, average or 'q' for exit")
+	fmt.Print(">>>  ")
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		input = scanner.Text()
@@ -23,7 +24,8 @@ func main() {
 			os.Exit(0)
 		} else if input == "convert" {
 
-			fmt.Print("Do you want to generate a new file? y for yes or n for no")
+			fmt.Print("Do you want to generate a new file? y for yes or n for no ")
+			fmt.Print(">>>  ")
 			var uinput string
 			fmt.Scan(&uinput)
 			if uinput == "y" {
@@ -64,14 +66,14 @@ func main() {
 						}
 					}
 				}
-				fmt.Println("Done with conversions. Choose average or exit:")
+				fmt.Println("Done with conversions. Choose average or exit: ")
 			} else if uinput == "n" {
 				fmt.Print("...")
 			} else {
-				fmt.Print("type in (y/n)")
+				fmt.Print("type in (y/n) ")
 			}
 		} else if input == "average" {
-			fmt.Print("c or f")
+			fmt.Print("c or f ")
 			var uinput string
 			fmt.Scan(&uinput)
 			if uinput == "c" {
