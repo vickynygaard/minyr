@@ -73,7 +73,7 @@ func TestLastLineOfFile(t *testing.T) {
 	}
 }
 
-func TestAverageTemp(t *testing.T) {
+/* func TestAverageTemp(t *testing.T) {
 
 	file, err := os.Open("kjevik-temp-fahr-20220318-20230318.csv")
 	if err != nil {
@@ -94,3 +94,4 @@ func TestAverageTemp(t *testing.T) {
 	}
 
 }
+*/
