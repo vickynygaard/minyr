@@ -14,7 +14,7 @@ import (
 func main() {
 	var input string
 	lines := Opnelese()
-	fmt.Print("velg convert eller average")
+	fmt.Print("Choose convert, average or 'q' for exit")
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		input = scanner.Text()
@@ -22,11 +22,11 @@ func main() {
 			fmt.Println("exit")
 			os.Exit(0)
 		} else if input == "convert" {
-			//fmt.Println("Konverterer alle målingene gitt i grader Celsius til grader Fahrenheit.")
-			fmt.Print("vil du ha en ny fil? y for ja or n for nei ---> ")
+
+			fmt.Print("Do you want to generate a new file? y for yes or n for no")
 			var uinput string
 			fmt.Scan(&uinput)
-			if uinput == "j" {
+			if uinput == "y" {
 				newfile, err := os.Create("kjevik-temp-fahr-20220318-20230318.csv")
 				if err != nil {
 					log.Println(err)
@@ -64,11 +64,11 @@ func main() {
 						}
 					}
 				}
-				fmt.Println("ferdig Konvertere alle lingene fra grader Celsius til grader Fahrenheit.velg average eller exit:")
+				fmt.Println("Done with conversions. Choose average or exit:")
 			} else if uinput == "n" {
-				fmt.Print("ok,skal ikke gjøre noe")
+				fmt.Print("...")
 			} else {
-				fmt.Print("bare j eller n")
+				fmt.Print("type in (y/n)")
 			}
 		} else if input == "average" {
 			fmt.Print("c or f")
@@ -86,7 +86,7 @@ func main() {
 					}
 					sum += temp
 				}
-				fmt.Printf("gjennomsnittstemperatur (C) er : %0.2f", sum/16754)
+				fmt.Printf("Average temp (C) is : %0.2f", sum/16754)
 			} else if uinput == "f" {
 				sum2 := 0.0
 				for i := 1; i <= 16754; i++ {
@@ -100,10 +100,10 @@ func main() {
 					fahrenheit := conv.CelsiusToFahrenheit(temp)
 					sum2 += fahrenheit
 				}
-				fmt.Printf("gjennomsnittstemperatur (F) er : %0.2f", sum2/16754)
+				fmt.Printf("Average temp (F) is : %0.2f", sum2/16754)
 			}
 		} else {
-			fmt.Println("Venligst velg convert, average eller exit:")
+			fmt.Println("Please choose convert, average or exit:")
 		}
 	}
 }
