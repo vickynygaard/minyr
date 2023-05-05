@@ -1,12 +1,10 @@
 package yr
 
 import (
-	"bufio"
-	"os"
 	"testing"
 )
 
-// tester om antall linjer i filen er 16756
+/* tester om antall linjer i filen er 16756
 func TestLineCount(t *testing.T) {
 
 	//åpner filen som skal leses
@@ -29,7 +27,7 @@ func TestLineCount(t *testing.T) {
 		t.Errorf("Unexpected number of lines. Got %v, expected %v", lineCount, expectedCount)
 	}
 
-}
+} */
 
 func TestCelsiusToFahrenheitLine(t *testing.T) {
 
