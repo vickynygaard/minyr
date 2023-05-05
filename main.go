@@ -20,9 +20,11 @@ func main() {
 	fmt.Println("Type 'convert' to convert temperature from Celsius to Fahrenheit and save the results in a new file")
 	fmt.Println("Type 'average' to calculate the average temperature")
 	fmt.Println("Type 'q' to exit the program")
+	fmt.Println(">>>")
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for scanner.Scan() {
+		//fjerner alle tomme spaces før og etter input i tillegg til å gjøre inputen om til små bokstaver
 		input := strings.TrimSpace(strings.ToLower(scanner.Text()))
 
 		switch input {
@@ -47,6 +49,8 @@ func main() {
 
 func handleConvertOption() error {
 
+	// funksjon som åpner fil, leser linjer, gjør endringer og lagrer nye linjer i en ny fil
+
 	//se om output filen allerede eksisterer
 	if _, err := os.Stat(outputFile); err == nil {
 
@@ -60,24 +64,27 @@ func handleConvertOption() error {
 		confirm = strings.TrimSpace(strings.ToLower(confirm))
 
 		switch confirm {
-		case "y", "yes", "ja":
-			// Genererer outputfil på nytt
+		case "y", "yes":
+			// genererer outputfil på nytt
 			if err := generateOutputFile(); err != nil {
 				return err
 			}
 			fmt.Println("Fil generert")
 		default:
-			// Do not generate output file again
 			fmt.Println("Avslutter progammet")
 		}
 	} else {
-		// Output file does not exist, generate it
+		// Output filen finnes ikke fra før og en ny vil bli generert
 		if err := generateOutputFile(); err != nil {
 			return err
 		}
-		fmt.Println("Fil generert")
+		fmt.Println("%s generated\n", inputFile)
 	}
 	return nil
+}
+
+func handleAverageOption() error {
+
 }
 
 //evt annen kode å bruke til samme func^^

@@ -12,6 +12,7 @@ import (
 func CelsiusToFahrenheitString(celsius string) (string, error) {
 	var fahrFloat float64
 	var err error
+
 	if celsiusFloat, err := strconv.ParseFloat(celsius, 64); err == nil {
 		fahrFloat = conv.CelsiusToFahrenheit(celsiusFloat)
 	}
@@ -21,7 +22,7 @@ func CelsiusToFahrenheitString(celsius string) (string, error) {
 
 // Forutsetter at vi kjenner strukturen i filen og denne implementasjon
 // er kun for filer som inneholder linjer hvor det fjerde element
-// på linjen er verdien for temperaturmaaling i grader celsius
+// på linjen er verdien for temperaturaaling i grader celsius
 func CelsiusToFahrenheitLine(line string) (string, error) {
 
 	dividedString := strings.Split(line, ";")
@@ -32,12 +33,22 @@ func CelsiusToFahrenheitLine(line string) (string, error) {
 		if err != nil {
 			return "", err
 		}
+
 	} else {
-		return "", errors.New("Data er basert på gyldig data (per 18.03.2023) (CC BY 4.0) fra Meteorologisk institutt (MET);endringen er gjort av Victoria Nygård.")
+		return "", errors.New("linje har ikke forventet format")
 	}
 	return strings.Join(dividedString, ";"), nil
 
-	/*
-		return "Kjevik;SN39040;18.03.2022 01:50;42.8", err
-	*/
+	//return "Kjevik;SN39040;18.03.2022 01:50;42.8", err
+}
+func LastLineOfFile(line string) string {
+
+	dividedString := strings.Split(line, ";")
+
+	if len(dividedString) == 4 && dividedString[3] == "" && dividedString[2] == "" && dividedString[1] == "" {
+		return "Data er basert på gyldig data (per 18.03.2023) (CC BY 4.0) fra Meteorologisk institutt (MET);endringen er gjort av Victoria Nygaard"
+	} else {
+		return ""
+	}
+
 }

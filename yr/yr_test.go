@@ -55,6 +55,22 @@ func TestCelsiusToFahrenheitLine(t *testing.T) {
 
 func TestLastLineOfFile(t *testing.T) {
 
+	type test struct {
+		input string
+		want  string
+	}
+	tests := []test{
+
+		{input: "Data er gyldig per 18.03.2023 (CC BY 4.0), Meteorologisk institutt (MET);;;",
+			want: "Data er basert på gyldig data (per 18.03.2023) (CC BY 4.0) fra Meteorologisk institutt (MET);endringen er gjort av Victoria Nygaard"},
+	}
+
+	for _, tc := range tests {
+		got := LastLineOfFile(tc.input)
+		if !(tc.want == got) {
+			t.Errorf("expected %s, got: %s", tc.want, got)
+		}
+	}
 }
 
 func TestAverageTemp(t *testing.T) {
